@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AulaPesquisar.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        Pesquisar Pessoas
+    </div>
+    <div class="card-body">
+        <form action="/Pessoas/index" method="get">
+            <div class="row align-items-center">
+                <a href="/Pessoas/Create" class="= btn btn-dark">
+                    Novo
+                </a>
+                <select name="Itembusca" class="form-control ml-2 mr-2 col-2">
+                    <option value="Todos">Todos</option>
+                    <option value="Nome">Por Nome</option>
+                    <option value="Idade">Por Idade</option>
+                    <option value="CPF">Por CPF</option>
+                    <option value="RG">Por RG</option>
+                </select>
+                <label class="col-2 mr-1 ml-1">DIGITE SUA BUSCA</label>
+                <input type="text" name="query" class="form-control col-4 " />
+                <button type="submit" class="btn btn-success col-2 ml-2 ">
+                    Pesquisar
+                </button>
+            </div>
+        </form>
+        
+    </div>
+
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rg)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rg)
+            </td>
+                
+            
+            <td>
+                <a href="/Pessoas/Edit/@item.Id" class="btn btn-warning">Editar Pessoa</a>
+                <a href="/Pessoas/Edit/@item.Id" class="btn btn-danger">Excluir Pessoa</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
